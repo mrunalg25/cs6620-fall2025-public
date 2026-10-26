@@ -142,10 +142,24 @@ def serve_audio_segment():
 
 @app.route('/')
 def index():
-    """
-    Renders the main HTML page for the client-side audio player.
-    """
-    return render_template('index.html') 
+    from datetime import datetime
+    return f'''
+    <h1>Hello from Automated CI/CD Pipeline!</h1>
+    <p><strong>Version:</strong> 2.0 - Automated Deployment</p>
+    <p><strong>Deployed via:</strong> GitHub Actions + AWS SSM</p>
+    <p><strong>Build Date:</strong> {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
+    <p><strong>Assignment:</strong> Automated EC2 Deployment</p>
+    '''
+
+@app.route('/health')
+def health():
+    from datetime import datetime
+    return {
+        'status': 'healthy',
+        'version': '2.0',
+        'deployment_method': 'automated',
+        'timestamp': datetime.now().isoformat()
+    }
 
 @app.route('/select_directory', methods=['POST'])
 def select_directory():
